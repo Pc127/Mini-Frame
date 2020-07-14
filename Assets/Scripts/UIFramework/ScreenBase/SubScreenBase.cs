@@ -1,10 +1,12 @@
 ﻿public class SubScreenBase
 {
-    protected UISubCtrlBase mCtrlBase;
+    // 关联SubCtrl
+    protected SubUICtrlBase mCtrlBase;
 
-    public UISubCtrlBase CtrlBase { get { return mCtrlBase; } }
+    public SubUICtrlBase CtrlBase { get { return mCtrlBase; } }
 
-    public SubScreenBase(UISubCtrlBase ctrlBase)
+    // 利用SubCtrl来进行初始化
+    public SubScreenBase(SubUICtrlBase ctrlBase)
     {
         mCtrlBase = ctrlBase;
         Init();

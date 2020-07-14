@@ -20,6 +20,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : Component
 
             _instance = (T)FindObjectOfType(theType);
 
+            // 单例不存在时创建
             if (_instance == null)
             {
                 var go = new GameObject(typeof(T).Name);
@@ -78,6 +79,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : Component
             _instance = GetComponent<T>();
         }
 
+        // 保证单件不会被销毁
         DontDestroyOnLoad(gameObject);
 
         Init();
@@ -105,6 +107,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : Component
         return _instance != null;
     }
 
+    // 空的虚函数
     protected virtual void Init()
     {
 

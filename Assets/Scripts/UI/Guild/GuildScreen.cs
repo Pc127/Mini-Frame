@@ -7,6 +7,7 @@ public class GuildScreen : ScreenBase
 {
     GuildCtrl mCtrl;
 
+    // 两个subSreen
     GuildCreateSubScreen mSubCreate;// 创建公会界面逻辑
     GuildInfoSubScreen mSubInfo;        // 公会详情界面逻辑
 

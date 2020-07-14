@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+
+// ui层级
 public enum ESceenPriority
 {
     Default = 0,   //大厅以下 预留 目前没有使用到
@@ -24,6 +26,7 @@ public enum EUICareAboutMoneyType
 
 public class UICtrlBase : UIFEventAutoRelease
 {
+    // 保存canvas
     [HideInInspector]
     public Canvas ctrlCanvas;
 

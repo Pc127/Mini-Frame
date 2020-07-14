@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-public class GuildCreateSubCtrl : UISubCtrlBase
+public class GuildCreateSubCtrl : SubUICtrlBase
 {
     public Button btnCreate;   // 创建公会
     public InputField ipGuildName;// 公会名字

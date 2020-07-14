@@ -2,8 +2,13 @@
 
 public class ScreenBase
 {
+    // ui控件节点
     public GameObject mPanelRoot = null;
+
+    // ui加载字符串
     public string mStrUIName = "";
+
+    // 保存一个Ctrl
     protected UICtrlBase mCtrlBase;
 
     public int mOpenOrder = 0;// 界面打开顺序
@@ -20,6 +25,7 @@ public class ScreenBase
         StartLoad(UIName, param);
     }
 
+    // 加载ui的prefab
     public virtual void StartLoad(string UIName, UIOpenScreenParameterBase param = null)
     {
         mStrUIName = UIName;
@@ -27,9 +33,10 @@ public class ScreenBase
         ResourcesMgr.GetInstance().LoadAsset<GameObject>(UIName, PanelLoadComplete);
     }
 
-    // 资源加载完成
+    // 资源加载完成时调用
     void PanelLoadComplete(GameObject ao)
     {
+        // 绑定到GameUIMgr
         mPanelRoot = Object.Instantiate(ao, GameUIManager.GetInstance().GetUIRootTransform());
         // 获取控件对象
         mCtrlBase = mPanelRoot.GetComponent<UICtrlBase>();

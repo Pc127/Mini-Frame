@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameUIManager : MonoSingleton<GameUIManager>
 {
+    // 加载的ui对象 放在uiRoot之下
     public GameObject uiRoot;
     public GameObject poolRoot // 缓存节点
     {
@@ -13,6 +14,7 @@ public class GameUIManager : MonoSingleton<GameUIManager>
     }
 
     // UI列表缓存
+    // 类型 & 逻辑处理类
     static Dictionary<Type, ScreenBase> mTypeScreens = new Dictionary<Type, ScreenBase>();
 
     public int mUIOpenOrder = 0;// UI打开时的Order值 用来标识界面层级顺序
@@ -35,6 +37,7 @@ public class GameUIManager : MonoSingleton<GameUIManager>
     protected override void Init()
     {
         // 初始化UI根节点
+        // 加载UI根节点 一个固定的Prefab节点
         uiRoot = Instantiate(Resources.Load<GameObject>("UIRoot"), transform);
         uiCamera = uiRoot.GetComponent<Canvas>().worldCamera;
 
@@ -42,12 +45,14 @@ public class GameUIManager : MonoSingleton<GameUIManager>
         poolRoot = new GameObject("UIPoolRoot");
         poolRoot.transform.SetParent(transform);
 
+        // 为ui缓存池添加一个canvas
         Canvas canvas = poolRoot.AddComponent<Canvas>();
         canvas.enabled = false;
     }
 
     /// <summary>
-    ///  UI打开入口没有判断条件直接打开
+    ///  UI打开入口没有判断条件直接打开,手动调用接口
+    ///  区别于ADD，AddUI非手动调用接口
     /// </summary>
 	public ScreenBase OpenUI(Type type, UIOpenScreenParameterBase param = null)
     {
@@ -71,6 +76,8 @@ public class GameUIManager : MonoSingleton<GameUIManager>
 
             return sb;
         }
+
+        // 没有该ui，则创建它
         sb = (ScreenBase)Activator.CreateInstance(type, param);
 
         mTypeScreens.Add(type, sb);
